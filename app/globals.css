@@ -234,6 +234,7 @@ body {
   .add-input {
     min-width: 0;
     flex: 1 1 100%;
+    font-size: 1rem;
   }
 
   .add-button {

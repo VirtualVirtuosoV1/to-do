@@ -1,26 +1,209 @@
-@import "tailwindcss";
-
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #050816;
+  --bg-card: #0f172a;
+  --accent: #38bdf8;
+  --accent-soft: rgba(56, 189, 248, 0.1);
+  --text: #e5e7eb;
+  --text-muted: #9ca3af;
+  --danger: #f97373;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #1e293b 0, #020617 45%, #020617 100%);
+  color: var(--text);
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.todo-card {
+  width: 100%;
+  max-width: 480px;
+  background: var(--bg-card);
+  border-radius: 1.25rem;
+  padding: 1.75rem 1.5rem 1.5rem;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+}
+
+.todo-header {
+  margin-bottom: 1.25rem;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.5rem;
+  letter-spacing: 0.02em;
+}
+
+.subtitle {
+  margin: 0.4rem 0 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.add-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.add-input {
+  flex: 1;
+  padding: 0.55rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  background: rgba(15, 23, 42, 0.8);
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.add-input::placeholder {
+  color: rgba(148, 163, 184, 0.9);
+}
+
+.add-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.6);
+}
+
+.add-button {
+  border: none;
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #0b1120;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.add-button:hover {
+  filter: brightness(1.05);
+}
+
+.add-button:active {
+  transform: translateY(1px);
+}
+
+.empty {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.todo-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.45rem 0.6rem;
+  border-radius: 0.75rem;
+  transition: background 0.15s ease;
+}
+
+.todo-item:hover {
+  background: var(--accent-soft);
+}
+
+.todo-left {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  cursor: pointer;
+}
+
+.todo-left input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+}
+
+.todo-title {
+  font-size: 0.95rem;
+}
+
+.todo-title.done {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.delete-button {
+  border: none;
+  background: transparent;
+  color: var(--danger);
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0.1rem 0.25rem;
+  border-radius: 999px;
+}
+
+.delete-button:hover {
+  background: rgba(248, 113, 113, 0.12);
+
+  .header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.logout-button {
+  border: none;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  background: transparent;
+  color: #e5e7eb;
+  font-size: 0.8rem;
+  cursor: pointer;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+}
+
+.logout-button:hover {
+  background: rgba(148, 163, 184, 0.15);
+}
+
+.hint {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.hint code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.4rem;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+}
+
 }
